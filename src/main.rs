@@ -2,6 +2,8 @@ mod lorem_ipsum;
 use lorem_ipsum::*;
 
 use clap::{Parser, ValueEnum};
+use std::fs;
+use std::path::PathBuf;
 
 #[derive(Parser, Clone)]
 #[command(version)]
@@ -9,6 +11,10 @@ struct Args {
     /// What kind of text to generate
     #[arg(short, long, value_enum, default_value_t = TextMode::Paragraphs)]
     text_mode: TextMode,
+
+    /// A path to a wordlist to use other than the default
+    #[arg(short = 'W', long)]
+    wordlist: Option<PathBuf>,
 
     /// Specify how many words in total / per sentence to generate
     #[arg(short, long = "words", default_value_t = LoremConfig::default().words_count)]
@@ -61,8 +67,19 @@ fn main() {
 
     // Obtain a LoremConfig from the args
     let config: LoremConfig = args.clone().into();
+
+    // If the user has supplied a path to a wordlist, use that
+    let placeholder: String = if let Some(wordlist_path) = args.wordlist {
+        match fs::read_to_string(wordlist_path) {
+            Ok(text) => text,
+            Err(err) => panic!("{}", err),
+        }
+    } else {
+        DEFAULT_PLACEHOLDER.to_string()
+    };
+
     // Create a generator
-    let mut generator = LoremGenerator::new();
+    let mut generator = LoremGenerator::new_from_string(placeholder);
     generator.set_config(config);
 
     let output = match args.text_mode {

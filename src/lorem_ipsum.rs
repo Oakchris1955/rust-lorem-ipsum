@@ -329,14 +329,6 @@ pub struct LoremGenerator {
 }
 
 impl LoremGenerator {
-    #[allow(dead_code)]
-    pub fn new() -> Self {
-        let placeholder: Placeholder<String> = Placeholder::from(None);
-
-        Self::new_from_placeholder(&placeholder)
-    }
-
-    #[allow(dead_code)]
     pub fn new_from_string<S>(string: S) -> Self
     where
         S: ToString,
