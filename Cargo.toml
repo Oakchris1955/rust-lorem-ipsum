@@ -8,6 +8,10 @@ repository = "https://github.com/Oakchris1955/rust-lorem-ipsum.git"
 license = "MIT"
 publish = true
 
+exclude = [
+    "/.vscode"
+]
+
 [dependencies]
 clap = { version = "4.5.3", features = [ "derive" ] }
 rand = { version = "0.8.5", features = [ "alloc" ] }
