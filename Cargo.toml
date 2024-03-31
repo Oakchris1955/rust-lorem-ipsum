@@ -2,9 +2,13 @@
 name = "lorem-ipsum"
 version = "0.1.0"
 edition = "2021"
+authors = [ "Oakchris1955" ]
+description = "Quickly generate placeholder test"
+repository = "https://github.com/Oakchris1955/rust-lorem-ipsum.git"
+license = "MIT"
 publish = true
 
 [dependencies]
-clap = { version = "4.5.3", features = ["derive"] }
+clap = { version = "4.5.3", features = [ "derive" ] }
 rand = { version = "0.8.5", features = [ "alloc" ] }
 regex = "1.10.3"
