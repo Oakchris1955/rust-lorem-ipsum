@@ -1,9 +1,4 @@
-use rand::{
-    distributions::{Bernoulli, Distribution},
-    rngs::ThreadRng,
-    seq::SliceRandom,
-    thread_rng, Rng,
-};
+use rand::{rngs::ThreadRng, seq::SliceRandom, thread_rng, Rng};
 use regex::Regex;
 use std::convert::From;
 use std::ffi::OsStr;
@@ -215,16 +210,16 @@ impl GeneratorPublic for LoremGenerator {
     fn generate_words(&mut self) -> String {
         let num = self.config.words_count.clone().into();
 
-        let comma_distribution =
-            Bernoulli::new(1.0 / self.config.comma_probability as f64).unwrap();
-
         self.wordlist
             .choose_multiple(&mut self.rng, num)
             .cloned()
             .enumerate()
             .map(|(index, mut string)| {
                 // Randomly add commas
-                let trailing_substring = if comma_distribution.sample(&mut self.rng) {
+                let trailing_substring = if self
+                    .rng
+                    .gen_bool(1.0 / self.config.comma_probability as f64)
+                {
                     ","
                 } else {
                     ""
