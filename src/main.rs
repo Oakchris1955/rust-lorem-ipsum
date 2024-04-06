@@ -13,7 +13,6 @@ struct Args {
     text_mode: TextMode,
 
     /// A path to a wordlist to use other than the default
-    #[arg(short = 'W', long)]
     wordlist: Option<PathBuf>,
 
     /// Specify how many words in total / per sentence to generate
