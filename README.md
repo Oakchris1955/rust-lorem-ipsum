@@ -13,7 +13,11 @@ Quickly generate placeholder text using Rust
 ## Usage
 
 ```txt
-Usage: lorem-ipsum [OPTIONS]
+Usage: lorem-ipsum [OPTIONS] [WORDLIST]
+
+Arguments:
+  [WORDLIST]
+          A path to a wordlist to use other than the default
 
 Options:
   -t, --text-mode <TEXT_MODE>
@@ -25,9 +29,6 @@ Options:
           - words:      Generate a number of words specified by word-count
           - sentences:  Generate a number of sentences specified by sentence-count
           - paragraphs: Generate a number of paragraphs specified by paragraph-count
-
-  -W, --wordlist <WORDLIST>
-          A path to a wordlist to use other than the default
 
   -w, --words <WORDS_COUNT>
           Specify how many words in total / per sentence to generate

@@ -1,6 +1,6 @@
 [package]
 name = "lorem-ipsum"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = [ "Oakchris1955" ]
 description = "Quickly generate placeholder test"
